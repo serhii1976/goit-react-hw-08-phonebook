@@ -1,34 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ContactItem,
   ContactButton,
 } from 'components/ContactListItem/ContactListItem.styled';
 
-export class ContactListItem extends Component {
-  render() {
-    return (
-      <>
-        {this.props.contacts
-          .filter(contact =>
-            contact.name.toLowerCase().includes(this.props.filter.toLowerCase())
-          )
-          .map(contact => (
-            <ContactItem key={contact.id}>
-              {contact.name}: {contact.number}
-              <ContactButton
-                type="button"
-                id={contact.id}
-                onClick={this.props.handleDelete}
-              >
-                Delete
-              </ContactButton>
-            </ContactItem>
-          ))}
-      </>
-    );
-  }
-}
+export const ContactListItem = props => {
+  const { contacts, filter, handleDelete } = props;
+  return (
+    <>
+      {contacts
+        .filter(contact =>
+          contact.name.toLowerCase().includes(filter.toLowerCase())
+        )
+        .map(contact => (
+          <ContactItem key={contact.id}>
+            {contact.name}: {contact.number}
+            <ContactButton type="button" id={contact.id} onClick={handleDelete}>
+              Delete
+            </ContactButton>
+          </ContactItem>
+        ))}
+    </>
+  );
+};
 ContactListItem.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({

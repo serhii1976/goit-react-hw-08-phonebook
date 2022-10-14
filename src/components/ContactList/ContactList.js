@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ContactListItem } from 'components/ContactListItem/ContactListItem';
 import PropTypes from 'prop-types';
 
-export class ContactList extends Component {
-  render() {
-    return (
-      <ul>
-        <ContactListItem
-          contacts={this.props.contacts}
-          filter={this.props.filter}
-          handleDelete={this.props.handleDelete}
-        />
-      </ul>
-    );
-  }
-}
+export const ContactList = props => {
+  const { contacts, filter, handleDelete } = props;
+  return (
+    <ul>
+      <ContactListItem
+        contacts={contacts}
+        filter={filter}
+        handleDelete={handleDelete}
+      />
+    </ul>
+  );
+};
+
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
