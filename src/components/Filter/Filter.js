@@ -1,22 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeFilter } from 'redux/filterSlice';
+import { getFilter } from 'redux/selectors';
 import { FindText, InputFind } from 'components/Filter/Filter.styled';
 
-export const Filter = ({ value, handleChange }) => {
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
+
+  const handleFilterChange = e => {
+    dispatch(changeFilter(e.target.value));
+  };
+
   return (
     <>
       <FindText>Find contacts by name</FindText>
       <InputFind
         type="text"
         name="name"
-        onChange={handleChange}
-        value={value}
+        onChange={handleFilterChange}
+        value={filter.value}
       />
     </>
   );
-};
-
-Filter.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
 };
