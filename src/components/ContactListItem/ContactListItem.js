@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
 import PropTypes from 'prop-types';
 import {
   ContactItem,
@@ -8,7 +8,7 @@ import {
 } from 'components/ContactListItem/ContactListItem.styled';
 
 export const ContactListItem = ({ contact }) => {
-  const { id, name, number } = contact;
+  const { id, name, phone } = contact;
 
   const dispatch = useDispatch();
   const handleDelete = () => {
@@ -17,7 +17,7 @@ export const ContactListItem = ({ contact }) => {
 
   return (
     <ContactItem>
-      {name}: {number}
+      {name}: {phone}
       <ContactButton type="button" id={id} onClick={handleDelete}>
         Delete
       </ContactButton>
@@ -29,6 +29,7 @@ ContactListItem.propTypes = {
   contact: PropTypes.exact({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.node.isRequired,
+    phone: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
   }),
 };
