@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/operations';
+import { selectContacts } from 'redux/contacts/selectors';
 import {
   Form,
   InputTitle,
@@ -17,12 +17,12 @@ export const ContactForm = () => {
     event.preventDefault();
     const form = event.currentTarget;
     const name = form.elements.name.value;
-    const phone = form.elements.number.value;
+    const number = form.elements.number.value;
     form.reset();
 
     contacts.items?.map(contact => contact.name).includes(name)
       ? alert(`${name} is already in contacts`)
-      : dispatch(addContact({ name, phone }));
+      : dispatch(addContact({ name, number }));
   };
 
   return (

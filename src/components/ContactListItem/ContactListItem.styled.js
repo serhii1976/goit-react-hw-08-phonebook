@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
 export const ContactItem = styled.li`
-  width: 25vw;
+  /* width: 25vw; */
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
+  padding: 5px;
+  border: 2px solid grey;
+  border-radius: 5px;
 `;
 export const ContactButton = styled.button`
   width: 5vw;
